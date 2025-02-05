@@ -1,0 +1,79 @@
+openapi: 3.0.0
+info:
+  title: Roman Numeral Converter API
+  description: An API that converts decimal numbers to Roman numerals
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+  
+paths:
+  /romannumeral:
+    get:
+      summary: Convert decimal number to Roman numeral
+      description: Converts a decimal number (1-3999) to its Roman numeral representation
+      operationId: convertToRoman
+      parameters:
+        - name: query
+          in: query
+          description: The decimal number to convert
+          required: true
+          schema:
+            type: string
+            pattern: '^[0-9]+$'
+            example: "42"
+      responses:
+        '200':
+          description: Successful conversion
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  input:
+                    type: string
+                    description: The input decimal number
+                    example: "42"
+                  output:
+                    type: string
+                    description: The Roman numeral representation
+                    example: "XLII"
+                required:
+                  - input
+                  - output
+        '400':
+          description: Invalid input
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  input:
+                    type: string
+                    description: The invalid input value
+                    example: "-1"
+                  error:
+                    type: string
+                    description: Error message describing the validation failure
+                    example: "Number must be between 1 and 3999"
+                required:
+                  - input
+                  - error
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  input:
+                    type: string
+                    description: The input value that caused the error
+                  error:
+                    type: string
+                    description: Error message
+                    example: "Something went wrong. Please try again later."
+                required:
+                  - input
+                  - error 
