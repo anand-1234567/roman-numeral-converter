@@ -12,6 +12,5 @@ An application for converting numbers into roman numerals.
 - Node.js (v18+)
 - pnpm (v9+)
 
-
 # References
 - https://en.wikipedia.org/wiki/Roman_numerals
