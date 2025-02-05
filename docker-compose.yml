@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  api:
+    build:
+      context: ./apps/api
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+
+  ui:
+    build:
+      context: ./apps/ui
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - API_URL=http://api:8080
+    depends_on:
+      - api

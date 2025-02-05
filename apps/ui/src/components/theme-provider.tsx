@@ -53,11 +53,12 @@ export function ThemeProvider({
       setTheme(theme);
       try {
         localStorage.setItem('theme', theme);
-      } catch (e) {
+      } catch (e) { // eslint-disable-line @typescript-eslint/no-unused-vars
         // Ignore localStorage errors
       }
     },
   };
+
 
   return (
     <ThemeProviderContext.Provider {...props} value={value}>

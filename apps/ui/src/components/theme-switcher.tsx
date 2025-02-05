@@ -22,7 +22,6 @@ export function ThemeSwitcher() {
         <SunIcon width="16" height="16" />
       </SegmentedControl.Item>
       <SegmentedControl.Item value="dark" className="theme-switcher-item">
-
         <MoonIcon width="16" height="16" />
       </SegmentedControl.Item>
     </SegmentedControl.Root>
