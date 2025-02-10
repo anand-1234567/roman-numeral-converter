@@ -18,7 +18,7 @@ import {
 } from '@opentelemetry/semantic-conventions';
 
 const exporter = new PrometheusExporter({
-    port: 9464,
+    port: parseInt(process.env.METRICS_PORT || '9464'),
 });
 const detectedResources = detectResourcesSync({
     detectors: [envDetector],

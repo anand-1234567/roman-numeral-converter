@@ -17,7 +17,7 @@ COPY . .
 # Build the app
 RUN pnpm build
 
-EXPOSE 8080
+EXPOSE 8080 9464
 
 # Start the app
 CMD ["pnpm", "start"] 
