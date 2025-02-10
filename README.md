@@ -53,5 +53,9 @@ You can view the following:
 - Traces on Jaeger at http://localhost:16686/
 - Metrics on Prometheus at http://localhost:9090
 
+Some sample metric queries you can try on Prometheus
+- `rate(roman_numeral_conversion_ui_requests_total{job="roman-numeral-converter-ui"}[5m])`
+- `histogram_quantile(0.90, rate(roman_numeral_conversion_api_request_duration_ms_bucket[5m]))`
+
 ## References
 - https://en.wikipedia.org/wiki/Roman_numerals
