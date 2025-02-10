@@ -1,0 +1,16 @@
+scrape_configs:
+  - job_name: 'otel-collector'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['otel-collector:8889']
+      - targets: ['otel-collector:8888']
+  - job_name: 'roman-numeral-converter-api'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['host.docker.internal:9464']
+    metrics_path: '/metrics'
+  - job_name: 'roman-numeral-converter-ui'
+    scrape_interval: 10s
+    static_configs:
+      - targets: ['host.docker.internal:9465']
+    metrics_path: '/metrics'
