@@ -1,30 +1,40 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
+
 import { Heading, Flex, Button, TextField, Card, Text, Container, Box } from '@radix-ui/themes';
 import { ThemeSwitcher } from '../components/theme-switcher';
+import { useMetrics } from '../components/metrics-provider';
 
 export default function Home() {
+  const { track } = useMetrics();
   const [number, setNumber] = useState('');
   const [result, setResult] = useState<{ input: string; output: string; } | null>(null);
   const [error, setError] = useState<{ input?: string; error: string; } | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleRomanConversion = async (e: React.FormEvent) => {
+  const handleRomanConversion = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setResult(null);
     setError(null);
+    track('conversion_request');
     try {
+      const startTime = Date.now();
       const response = await fetch(`/api/roman?query=${encodeURIComponent(number.trim())}`);
       const data = await response.json();
+      const duration = Date.now() - startTime;
+      track('api_request_duration_ms', { value: duration });
       
       if (response.ok) {
+        track('request_status', { value: 'success' });
         setResult(data);
       } else {
+        track('request_status', { value: 'error', type: 'api_error' });
         setError(data);
       }
     } catch (error) {
+      track('request_status', { value: 'error', type: 'unknown',  });
       console.error('Error converting number:', error);
       setError({ error: 'Error converting number' });
     } finally {
@@ -51,14 +61,14 @@ export default function Home() {
                     id="number-input"
                     type="text"
                     value={number}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNumber(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => setNumber(e.target.value)}
                     aria-describedby={
                       (result && result.input === number) ? 'result-message' :
                       error ? 'error-message' : undefined
                     }
                     aria-invalid={error ? 'true' : 'false'}
                   />
-                  <Button type="submit" disabled={isLoading}>
+                  <Button type="submit" disabled={isLoading} onClick={() => track('button_click', { source: 'convert_to_roman_numeral_btn' })}>
                     {isLoading ? 'Converting...' : 'Convert to roman numeral'}
                   </Button>
                 </Flex>

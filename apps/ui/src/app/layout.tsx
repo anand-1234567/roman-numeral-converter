@@ -1,5 +1,7 @@
 import './globals.css';
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from '../components/theme-provider';
+import { WebVitals } from '../components/web-vitals';
+import { MetricsProvider } from '../components/metrics-provider';
 
 export const metadata = {
   title: 'Roman Numeral Converter',
@@ -15,9 +17,12 @@ export default function RootLayout({
       <head />
       <body>
         <ThemeProvider defaultTheme="system">
-          {children}
+          <MetricsProvider>
+            <WebVitals />
+            {children}
+          </MetricsProvider>
         </ThemeProvider>
       </body>
     </html>
   );
-} 
+}

@@ -2,18 +2,24 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Home from './page';
+import { MetricsProvider } from '../components/metrics-provider';
 
 // Mock fetch globally
 const mockFetch = vi.fn();
 global.fetch = mockFetch;
 
+function renderWithMetrics(ui: React.ReactNode) {
+  return render(<MetricsProvider>{ui}</MetricsProvider>);
+}
+
 describe('Home Page', () => {
   beforeEach(() => {
+
     mockFetch.mockReset();
   });
 
   it('renders roman numeral converter form', () => {
-    render(<Home />);
+    renderWithMetrics(<Home />);
     
     expect(screen.getByLabelText('Enter a number')).toBeInTheDocument();
     expect(screen.getByText('Convert to roman numeral')).toBeInTheDocument();
@@ -25,7 +31,7 @@ describe('Home Page', () => {
       json: async () => ({ input: '234', output: 'CCXXXIV' }),
     });
 
-    render(<Home />);
+    renderWithMetrics(<Home />);
     
     const input = screen.getByLabelText('Enter a number');
     const button = screen.getByText('Convert to roman numeral');
@@ -49,7 +55,7 @@ describe('Home Page', () => {
       json: async () => ({ input: '4000', error: 'Number must be between 1 and 3999' }),
     });
 
-    render(<Home />);
+    renderWithMetrics(<Home />);
     
     const input = screen.getByLabelText('Enter a number');
     const button = screen.getByText('Convert to roman numeral');
