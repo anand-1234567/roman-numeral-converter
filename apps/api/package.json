@@ -2,6 +2,7 @@
   "name": "@roman-numeral-converter/api",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "next dev -p 8080 --turbopack",
@@ -9,7 +10,8 @@
     "start": "next start -p 8080",
     "type-check": "tsc --noEmit",
     "lint": "next lint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@opentelemetry/api": "^1.9.0",
@@ -32,6 +34,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "3.0.5",
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "typescript": "^5",

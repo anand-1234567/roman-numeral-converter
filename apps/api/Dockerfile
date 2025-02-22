@@ -17,6 +17,7 @@ COPY . .
 # Build the app
 RUN pnpm build
 
+# Expose the app and the metrics ports
 EXPOSE 8080 9464
 
 # Start the app
