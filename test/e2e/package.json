@@ -1,0 +1,20 @@
+{
+    "name": "@roman-numeral-converter/test-e2e",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "test:e2e": "playwright test",
+        "test:e2e:ui": "playwright test --ui",
+        "test:e2e:debug": "playwright test --debug",
+        "test:e2e:setup": "playwright install chromium && docker-compose build"
+    },
+    "dependencies": {
+        "@playwright/test": "^1.42.1"
+    },
+    "devDependencies": {
+        "@types/node": "^20"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
