@@ -1,9 +1,9 @@
 'use client';
 
-import { useTheme } from './theme-provider';
+import { useTheme } from '../hooks/use-theme';
 import { SegmentedControl } from '@radix-ui/themes';
 import { SunIcon, MoonIcon, DesktopIcon } from '@radix-ui/react-icons';
-import type { Theme } from './theme-provider';
+import type { Theme } from '../hooks/use-theme';
 
 export function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();

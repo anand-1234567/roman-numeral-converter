@@ -1,6 +1,6 @@
 'use client'
  
-import { useMetrics } from './metrics-provider';
+import { useMetrics } from '../hooks/use-metrics';
 import { useReportWebVitals } from 'next/web-vitals'
  
 export function WebVitals() {

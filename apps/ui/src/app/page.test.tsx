@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MESSAGES } from '@roman-numeral-converter/messages';
 import Home from './page';
-import { MetricsProvider } from '../components/metrics-provider';
+import { MetricsProvider } from '../hooks/use-metrics';
 
 // Mock fetch globally
 const mockFetch = vi.fn();

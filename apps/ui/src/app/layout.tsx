@@ -1,7 +1,7 @@
 import './globals.css';
-import { ThemeProvider } from '../components/theme-provider';
+import { ThemeProvider } from '../hooks/use-theme';
 import { WebVitals } from '../components/web-vitals';
-import { MetricsProvider } from '../components/metrics-provider';
+import { MetricsProvider } from '../hooks/use-metrics';
 
 export const metadata = {
   title: 'Roman Numeral Converter',

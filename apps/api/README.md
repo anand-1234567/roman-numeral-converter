@@ -25,15 +25,6 @@ Run the application:
 pnpm dev
 ``` 
 
-### Using Docker
-
-Run the application using Docker:
-
-```bash
-docker build -t roman-numeral-converter-api .
-docker run -p 8080:8080 roman-numeral-converter-api
-```
-
 Visit the application at http://localhost:8080/romannumeral?query=42
 
 ## Testing

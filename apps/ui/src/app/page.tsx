@@ -5,7 +5,7 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import { Heading, Flex, Button, TextField, Card, Text, Container, Box } from '@radix-ui/themes';
 import { MESSAGES } from '@roman-numeral-converter/messages';
 import { ThemeSwitcher } from '../components/theme-switcher';
-import { useMetrics } from '../components/metrics-provider';
+import { useMetrics } from '../hooks/use-metrics';
 
 export default function Home() {
   const { track } = useMetrics();
