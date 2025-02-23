@@ -2,21 +2,36 @@ version: '3.8'
 services:
   api:
     build:
-      context: ./apps/api
+      context: .
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+      - "9464:9464"
     environment:
       - NODE_ENV=production
+    command: ["pnpm", "start:api"]
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   ui:
     build:
-      context: ./apps/ui
+      context: .
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+      - "9465:9465"
     environment:
       - NODE_ENV=production
       - API_URL=http://api:8080
     depends_on:
-      - api
+      api:
+        condition: service_healthy
+    command: ["pnpm", "start:ui"]
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3

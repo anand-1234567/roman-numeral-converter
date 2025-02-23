@@ -4,7 +4,13 @@
   "description": "",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "dev": "concurrently \"pnpm --filter @roman-numeral-converter/api dev\" \"pnpm --filter @roman-numeral-converter/ui dev\" --names \"api,ui\" --prefix-colors \"cyan.bold,yellow.bold\""
+    "dev": "concurrently \"pnpm --filter @roman-numeral-converter/api dev\" \"pnpm --filter @roman-numeral-converter/ui dev\" --names \"api,ui\" --prefix-colors \"cyan.bold,yellow.bold\"",
+    "build": "concurrently \"pnpm --filter @roman-numeral-converter/api build\" \"pnpm --filter @roman-numeral-converter/ui build\" --names \"api,ui\" --prefix-colors \"cyan.bold,yellow.bold\"",
+    "build:api": "pnpm --filter @roman-numeral-converter/api build",
+    "build:ui": "pnpm --filter @roman-numeral-converter/ui build",
+    "start:docker": "docker compose up",
+    "start:api": "pnpm --filter @roman-numeral-converter/api start",
+    "start:ui": "pnpm --filter @roman-numeral-converter/ui start"
   },
   "keywords": [],
   "author": "",
