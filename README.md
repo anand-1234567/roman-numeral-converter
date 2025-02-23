@@ -47,7 +47,7 @@ The application uses OpenTelemetry for monitoring and tracing.
 The metrics can be viewed at http://localhost:9464/metrics for the API service and http://localhost:9465/metrics for the UI service.
 
 There is a docker container for testing the OpenTelemetry setup. It is configured to collect metrics from the API and UI services.
-Run `docker compose up` in the `telemetry-dev` directory to start the environment.
+Run `docker compose up` in the `dev/telemetry-docker` directory to start the environment.
 
 You can view the following:
 - Traces on Jaeger at http://localhost:16686/
