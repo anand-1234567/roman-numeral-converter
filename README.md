@@ -2,6 +2,8 @@
 
 An application for converting numbers into roman numerals. See [References](#references) for the Roman numerals specification source.
 
+![Roman Numeral Converter App Screenshot](./screenshot.png)
+
 ## Project Structure
 
 - `apps/api`: Backend API
