@@ -27,3 +27,9 @@ If chromium is not installed automatically, you can install it with the followin
 ```bash
 pnpm test:setup
 ```
+
+If the test is failing with a timeout, you can build the docker image first with the following command and run again
+
+```bash
+pnpm test:build
+```

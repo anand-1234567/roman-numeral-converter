@@ -15,7 +15,6 @@ function renderWithMetrics(ui: React.ReactNode) {
 
 describe('Home Page', () => {
   beforeEach(() => {
-
     mockFetch.mockReset();
   });
 

@@ -11,35 +11,35 @@ import { PrometheusExporter } from '@opentelemetry/exporter-prometheus';
 import { metrics } from '@opentelemetry/api';
 import { registerInstrumentations } from '@opentelemetry/instrumentation';
 import {
-    Resource,
-    detectResourcesSync,
-    envDetector,
+  Resource,
+  detectResourcesSync,
+  envDetector,
 } from '@opentelemetry/resources';
 import { MeterProvider } from '@opentelemetry/sdk-metrics';
 import {
-    ATTR_SERVICE_NAME,
+  ATTR_SERVICE_NAME,
 } from '@opentelemetry/semantic-conventions';
 
 const exporter = new PrometheusExporter({
-    port: parseInt(process.env.METRICS_PORT || '9465'),
+  port: parseInt(process.env.METRICS_PORT || '9465'),
 });
 const detectedResources = detectResourcesSync({
-    detectors: [envDetector],
+  detectors: [envDetector],
 });
 
 const customResources = new Resource({
-    [ATTR_SERVICE_NAME]: process.env.APP_NAME || 'roman-numeral-converter-ui',
+  [ATTR_SERVICE_NAME]: process.env.APP_NAME || 'roman-numeral-converter-ui',
 });
 
 const resources = detectedResources.merge(customResources);
 
 const meterProvider = new MeterProvider({
-    readers: [exporter],
-    resource: resources,
+  readers: [exporter],
+  resource: resources,
 });
 
 metrics.setGlobalMeterProvider(meterProvider);
 
 registerInstrumentations({
-    meterProvider,
+  meterProvider,
 });

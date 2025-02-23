@@ -31,7 +31,7 @@ export default function Home() {
         track('request', 'response_status', { value: 'success' });
         setResult(data);
       } else {
-        track('request', 'response_status', { value: 'error', type: 'api_error' });
+        track('request', 'response_status', { value: 'error', type: 'api_error', status: response.status });
         setError(data);
       }
     } catch (error) {
