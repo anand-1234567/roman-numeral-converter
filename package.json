@@ -10,7 +10,10 @@
     "build:ui": "pnpm --filter @roman-numeral-converter/ui build",
     "start:docker": "docker compose up",
     "start:api": "pnpm --filter @roman-numeral-converter/api start",
-    "start:ui": "pnpm --filter @roman-numeral-converter/ui start"
+    "start:ui": "pnpm --filter @roman-numeral-converter/ui start",
+    "test:unit": "concurrently \"pnpm --filter @roman-numeral-converter/api test\" \"pnpm --filter @roman-numeral-converter/ui test\" --names \"api,ui\" --prefix-colors \"cyan.bold,yellow.bold\"",
+    "test:e2e": "pnpm --filter @roman-numeral-converter/test-e2e test",
+    "test:visual": "pnpm --filter @roman-numeral-converter/test-visual test"
   },
   "keywords": [],
   "author": "",
