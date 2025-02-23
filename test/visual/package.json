@@ -1,14 +1,16 @@
 {
     "name": "@roman-numeral-converter/test-visual",
     "version": "1.0.0",
-    "description": "",
+    "description": "Visual tests for the Roman Numeral Converter",
     "scripts": {
         "preinstall": "npx only-allow pnpm",
         "postinstall": "playwright install chromium",
-        "test": "playwright test",
-        "test:ui": "playwright test --ui",
-        "test:debug": "playwright test --debug",
-        "test:setup": "playwright install chromium"
+        "test:internal": "playwright test",
+        "test:internal:ui": "playwright test --ui",
+        "test:internal:debug": "playwright test --debug",
+        "test:internal:setup": "playwright install chromium",
+        "test": "docker compose up --remove-orphans --exit-code-from playwright-test-runner",
+        "test:update-snapshots": "docker compose run -e UPDATE_SNAPSHOTS=--update-snapshots playwright-test-runner && docker compose down --remove-orphans"
     },
     "dependencies": {
         "@playwright/test": "^1.42.1"
@@ -18,5 +20,6 @@
     },
     "keywords": [],
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "packageManager": "pnpm@10.4.1+sha512.c753b6c3ad7afa13af388fa6d808035a008e30ea9993f58c6663e2bc5ff21679aa834db094987129aa4d488b86df57f7b634981b2f827cdcacc698cc0cfb88af"
 }

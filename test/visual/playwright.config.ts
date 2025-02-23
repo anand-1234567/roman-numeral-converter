@@ -34,16 +34,4 @@ export default defineConfig({
       },
     }
   ],
-  webServer: {
-    command: 'docker compose -f ../../docker-compose.yml up',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-    stdout: 'pipe',
-    stderr: 'pipe',
-    timeout: 60000,
-    gracefulShutdown: {
-      signal: 'SIGTERM',
-      timeout: 5000,
-    },
-  },
 }); 

@@ -50,7 +50,7 @@ export default function Home() {
           <ThemeSwitcher />
         </div>
         
-        <Heading as="h1" size="6">{MESSAGES.TITLE}</Heading>
+        <Heading as="h1" size="6" weight="bold">{MESSAGES.TITLE}</Heading>
  
         <Box width="100%" maxWidth="320px">
           <Card>

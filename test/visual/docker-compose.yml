@@ -1,0 +1,55 @@
+name: visual-tests
+services:
+  api:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "9464:9464"
+    environment:
+      - NODE_ENV=production
+    command: ["pnpm", "start:api"]
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  ui:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+      - "9465:9465"
+    environment:
+      - NODE_ENV=production
+      - API_URL=http://api:8080
+    depends_on:
+      api:
+        condition: service_healthy
+    command: ["pnpm", "start:ui"]
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:3000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+
+  playwright-test-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    command: sh -c "pnpm install && pnpm test:internal"
+    environment:
+      - APP_URL=http://ui:3000
+    depends_on:
+      api:
+        condition: service_healthy
+      ui:
+        condition: service_healthy
+    working_dir: /visual
+    volumes:
+      - .:/visual
+      - /visual/node_modules
