@@ -7,16 +7,19 @@ An application for converting numbers into roman numerals. See [References](#ref
 ## Project Structure
 
 - `apps/api`: Backend API
-- `apps/ui`: React UI 
+- `apps/ui`: Frontend
+- `test/e2e`: End-to-end tests
+- `test/visual`: Visual tests
+- `packages/*`: Shared packages
 
-You can see additional details about the individual apps in the README files in the respective directories.
+You can see additional details about the individual packages in the README files in the respective directories.
 
 ## Prerequisites
 
 - Node.js (v18+)
 - pnpm (v9+)
 
-## Running the application
+## Developer setup
 
 The project uses pnpm for development due to its speed and efficiency.
 
@@ -27,26 +30,51 @@ Install dependencies:
 pnpm install
 ```
 
-Run the application:
+Run the dev server:
 
 ```bash
 pnpm dev
 ``` 
 
-### Using Docker
+Visit the application at http://localhost:3000
+The API service will be available at http://localhost:8080. For example, http://localhost:8080/romannumeral?query=42
+
+### Running with Docker
 
 Run the application using Docker Compose:
 
 ```bash
 docker compose up
 ```
-Visit the application at http://localhost:3000
-The API service will be available at http://localhost:8080. For example, http://localhost:8080/romannumeral?query=42
+
+## Testing
+
+The project has unit, end-to-end, and visual tests.
+
+### Unit tests
+Each package has its own unit tests. There is a convenient script at the root of the project to run all the tests for the API and UI services.
+
+```bash
+pnpm test
+```
+
+### End-to-end tests
+The end to end tests are located in the `test/e2e` directory. 
+
+```bash
+pnpm test:e2e
+```
+
+### Visual tests
+The visual tests are located in the `test/visual` directory. The visual tests require docker to run.
+
+```bash
+pnpm test:visual
+```
 
 ## Monitoring
 
-The application uses OpenTelemetry for monitoring and tracing. 
-The metrics can be viewed at http://localhost:9464/metrics for the API service and http://localhost:9465/metrics for the UI service.
+The application uses OpenTelemetry for monitoring and tracing. See the [API README](./apps/api/README.md) for more details and the [UI README](./apps/ui/README.md) for the frontend monitoring details.
 
 There is a docker container for testing the OpenTelemetry setup. It is configured to collect metrics from the API and UI services.
 Run `docker compose up` in the `dev/telemetry-docker` directory to start the environment.
@@ -60,4 +88,4 @@ Some sample metric queries you can try on Prometheus
 - `histogram_quantile(0.90, rate(roman_numeral_conversion_api_request_duration_ms_bucket[5m]))`
 
 ## References
-- https://en.wikipedia.org/wiki/Roman_numerals
+- [Roman Numerals Wikipedia](https://en.wikipedia.org/wiki/Roman_numerals)

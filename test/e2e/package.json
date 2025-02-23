@@ -1,7 +1,7 @@
 {
     "name": "@roman-numeral-converter/test-e2e",
     "version": "1.0.0",
-    "description": "",
+    "description": "End to end tests for the Roman Numeral Converter",
     "scripts": {
         "preinstall": "npx only-allow pnpm",
         "postinstall": "playwright install chromium",

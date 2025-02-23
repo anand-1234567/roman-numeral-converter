@@ -4,7 +4,7 @@ import { InvalidInputError } from '../../lib/errors/InvalidInputError';
 import { InvalidRangeError } from '../../lib/errors/InvalidRangeError';
 import { MESSAGES } from '@roman-numeral-converter/messages';
 
-import { 
+import {
   romanNumeralConversionRequestsCounter, 
   romanNumeralConversionRequestDurationHistogram, 
   romanNumeralConverterRequestErrorsCounter 
@@ -24,7 +24,6 @@ export async function GET(request: NextRequest) {
   log.info(`Received request to convert ${numberStr}`);
 
   if (!numberStr || !numberStr.trim()) {
-    // note: Record error to an error counter metric with error type, status
     log.error(`Missing query parameter`);
     romanNumeralConverterRequestErrorsCounter.add(1, {
       httpStatusCode: 400,

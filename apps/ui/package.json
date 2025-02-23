@@ -1,7 +1,7 @@
 {
   "name": "@roman-numeral-converter/ui",
   "version": "1.0.0",
-  "description": "",
+  "description": "UI for the Roman Numeral Converter",
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",

@@ -1,8 +1,11 @@
-/* 
-References: 
-- https://vercel.com/docs/observability/otel-overview
-- https://github.com/vercel/next.js/discussions/16205#discussioncomment-9360516
-*/
+/**
+ * Setup the OpenTelemetry SDK 
+ * This also sets up the Prometheus exporter
+ * 
+ * References: 
+ * - https://vercel.com/docs/observability/otel-overview
+ * - https://github.com/vercel/next.js/discussions/16205#discussioncomment-9360516
+ */
 
 import { PrometheusExporter } from '@opentelemetry/exporter-prometheus';
 import { metrics } from '@opentelemetry/api';
