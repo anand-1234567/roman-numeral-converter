@@ -1,6 +1,7 @@
-import { describe, it, expect } from 'vitest';
-import { GET } from './route';
 import { NextRequest } from 'next/server';
+import { describe, it, expect } from 'vitest';
+import { MESSAGES } from '@roman-numeral-converter/messages';
+import { GET } from './route';
 
 describe('/romannumeral route', () => {
   function createRequest(query?: string) {
@@ -30,7 +31,7 @@ describe('/romannumeral route', () => {
     expect(response.status).toBe(400);
     expect(data).toEqual({
       input: null,
-      error: 'Please enter a number',
+      error: MESSAGES.ERROR_MESSAGE_MISSING_INPUT,
     });
   });
 
@@ -42,7 +43,7 @@ describe('/romannumeral route', () => {
     expect(response.status).toBe(400);
     expect(data).toEqual({
       input: '',
-      error: 'Please enter a number',
+      error: MESSAGES.ERROR_MESSAGE_MISSING_INPUT,
     });
   });
 

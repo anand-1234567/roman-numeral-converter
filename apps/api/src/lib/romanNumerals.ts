@@ -1,3 +1,4 @@
+import { MESSAGES } from '@roman-numeral-converter/messages';
 import { InvalidRangeError } from './errors/InvalidRangeError';
 import { InvalidInputError } from './errors/InvalidInputError';
 
@@ -25,19 +26,19 @@ const romanNumerals = [
 export function convertToRoman(input: string | number): string {
   const num = typeof input === 'string' ? parseFloat(input) : input;
   if (isNaN(num)) {
-    throw new InvalidInputError('Input must be a number');
+    throw new InvalidInputError(MESSAGES.ERROR_MESSAGE_INPUT_NOT_A_NUMBER);
   }
 
   if (!Number.isInteger(num)) {
-    throw new InvalidInputError('Number must be an integer');
+    throw new InvalidInputError(MESSAGES.ERROR_MESSAGE_INPUT_NOT_AN_INTEGER);
   }
 
   if (typeof input === 'string' && !/^[-.]?\d+$/.test(input)) {
-    throw new InvalidInputError('Number must contain only digits');
+    throw new InvalidInputError(MESSAGES.ERROR_MESSAGE_INPUT_HAS_SYMBOLS);
   }
 
   if (num < 1 || num > 3999) {
-    throw new InvalidRangeError('Number must be between 1 and 3999');
+    throw new InvalidRangeError(MESSAGES.ERROR_MESSAGE_INPUT_OUT_OF_RANGE);
   }
 
   let result = '';

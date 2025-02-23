@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useCallback } from 'react';
 
 interface MetricsContextType {
-  track: (name: string, metadata?: Record<string, any>) => void; // eslint-disable-line @typescript-eslint/no-explicit-any
+  track: (resource: string, action?: string, metadata?: Record<string, any>) => void; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 const MetricsContext = createContext<MetricsContextType | undefined>(undefined);
@@ -24,12 +24,13 @@ export function MetricsProvider({ children }: MetricsProviderProps) {
     window.dataLayer = [];
   }
 
-  const track = useCallback((name: string, metadata?: Record<string, any>) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+  const track = useCallback((resource: string, action?: string, attributes?: Record<string, any>) => { // eslint-disable-line @typescript-eslint/no-explicit-any
     if (typeof window === 'undefined') return;
 
     window.dataLayer.push({
-      event: name,
-      ...metadata,
+      resource,
+      action,
+      ...{attributes},
       timestamp: new Date().toISOString(),
     });
   }, []);

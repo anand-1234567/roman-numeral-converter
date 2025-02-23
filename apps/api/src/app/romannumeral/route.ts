@@ -2,6 +2,8 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { convertToRoman} from '../../lib/romanNumerals';
 import { InvalidInputError } from '../../lib/errors/InvalidInputError';
 import { InvalidRangeError } from '../../lib/errors/InvalidRangeError';
+import { MESSAGES } from '@roman-numeral-converter/messages';
+
 import { 
   romanNumeralConversionRequestsCounter, 
   romanNumeralConversionRequestDurationHistogram, 
@@ -28,7 +30,7 @@ export async function GET(request: NextRequest) {
       httpStatusCode: 400,
       type: 'MissingInput',
     });
-    return NextResponse.json({ input: numberStr, error: 'Please enter a number' }, { status: 400 });
+    return NextResponse.json({ input: numberStr, error: MESSAGES.ERROR_MESSAGE_MISSING_INPUT }, { status: 400 });
   }
 
   try {
@@ -57,7 +59,7 @@ export async function GET(request: NextRequest) {
       httpStatusCode: 500,
       type: 'UnknownError',
     });
-    const errorMessage = error instanceof Error ? error.message : 'Something went wrong. Please try again later.';
+    const errorMessage = error instanceof Error ? error.message : MESSAGES.ERROR_MESSAGE_UNKNOWN;
     return NextResponse.json({ input: numberStr, error: errorMessage }, { status: 500 });
   }
 }

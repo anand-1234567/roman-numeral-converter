@@ -1,0 +1,12 @@
+{
+  "name": "@roman-numeral-converter/messages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
