@@ -1,5 +1,5 @@
 import { render, act, renderHook } from '@testing-library/react';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { MetricsProvider, useMetrics } from './use-metrics';
 
 describe('MetricsProvider and useMetrics', () => {

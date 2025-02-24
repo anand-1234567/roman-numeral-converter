@@ -19,15 +19,18 @@ vi.mock('@/lib/metrics', () => ({
   },
 }));
 
+const mockFetch = vi.fn();
+global.fetch = mockFetch;
+
 describe('/romannumeral route', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    global.fetch = vi.fn();
+    mockFetch.mockReset();
   });
 
   it('should successfully convert a number to roman numeral', async () => {
     const mockResponse = { input: '42', output: 'XLII' };
-    (global.fetch as any).mockResolvedValueOnce({
+    mockFetch.mockResolvedValueOnce({
       json: () => Promise.resolve(mockResponse),
       status: 200,
     });
@@ -49,7 +52,7 @@ describe('/romannumeral route', () => {
 
   it('should pass response errors back to the client', async () => {
     const mockResponse = { input: 'abc', error: 'Some error message' };
-    (global.fetch as any).mockResolvedValueOnce({
+    mockFetch.mockResolvedValueOnce({
       json: () => Promise.resolve(mockResponse),
       status: 400,
     });
@@ -67,7 +70,7 @@ describe('/romannumeral route', () => {
   });
 
   it('should handle API errors', async () => {
-    (global.fetch as any).mockRejectedValueOnce(new Error('API Error'));
+    mockFetch.mockRejectedValueOnce(new Error('API Error'));
 
     const request = new NextRequest(
       new URL('http://localhost:3000/api/roman?query=42')

@@ -10,7 +10,7 @@ export function ThemeSwitcher() {
 
   return (
     <SegmentedControl.Root 
-      defaultValue={theme || 'system'} 
+      value={theme || 'system'}
       onValueChange={(value: Theme) => setTheme(value)}
       size="2"
       className="theme-switcher"
