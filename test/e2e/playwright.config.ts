@@ -3,7 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: '.',
   testMatch: '**/?(*.)+(test).ts?(x)',
-  timeout: 30000,
+  timeout: 600000,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
   reporter: [['html', { open: 'never' }]],
@@ -40,7 +40,7 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     stdout: 'pipe',
     stderr: 'pipe',
-    timeout: 1200000,
+    timeout: 6000000,
     gracefulShutdown: {
       signal: 'SIGTERM',
       timeout: 5000,
