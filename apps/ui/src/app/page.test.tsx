@@ -4,13 +4,14 @@ import userEvent from '@testing-library/user-event';
 import { MESSAGES } from '@roman-numeral-converter/messages';
 import Home from './page';
 import { MetricsProvider } from '../hooks/use-metrics';
+import { ThemeProvider } from '../hooks/use-theme';
 
 // Mock fetch globally
 const mockFetch = vi.fn();
 global.fetch = mockFetch;
 
 function renderWithMetrics(ui: React.ReactNode) {
-  return render(<MetricsProvider>{ui}</MetricsProvider>);
+  return render(<MetricsProvider><ThemeProvider>{ui}</ThemeProvider></MetricsProvider>);
 }
 
 describe('Home Page', () => {
