@@ -68,6 +68,16 @@ describe('ThemeProvider and useTheme', () => {
     expect(document.documentElement.classList.contains('dark')).toBe(true);
   });
 
+  it('should get the theme from localStorage', () => {
+    localStorage.setItem('theme', 'light');
+
+    const { result } = renderHook(() => useTheme(), {
+      wrapper: ThemeProvider,
+    });
+
+    expect(result.current.theme).toBe('light');
+  });
+
   it('should throw error when useTheme is used outside provider', () => {
     expect(() => renderHook(() => useTheme())).toThrowError(
       'useTheme must be used within a ThemeProvider'
