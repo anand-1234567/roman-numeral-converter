@@ -49,9 +49,10 @@ docker compose up
 
 ## Testing
 
-The project has unit, end-to-end, and visual tests.
+The project has unit, end-to-end and visual tests.
 
 ### Unit tests
+
 Each package has its own unit tests. There is a convenient script at the root of the project to run all the tests for the API and UI services.
 
 ```bash
@@ -59,6 +60,7 @@ pnpm test
 ```
 
 ### End-to-end tests
+
 The end to end tests are located in the `test/e2e` directory. 
 
 ```bash
@@ -66,6 +68,7 @@ pnpm test:e2e
 ```
 
 ### Visual tests
+
 The visual tests are located in the `test/visual` directory. The visual tests require docker to run.
 
 ```bash

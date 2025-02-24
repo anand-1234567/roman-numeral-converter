@@ -43,6 +43,7 @@ The application uses OpenTelemetry for monitoring and tracing. The metrics can b
 You can see the metrics instrumented for the UI backend at `src/lib/metrics.ts`. 
 
 ## User Analytics
+
 The Browser UI is instrumented following the [data layer approach](https://segment.com/blog/what-is-a-data-layer/). It uses a resource, action, attributes scheme to track the events. 
 
 See the [MetricsProvider](./src/hooks/use-metrics.tsx) component for the metrics instrumentation API.
@@ -50,4 +51,5 @@ See the [MetricsProvider](./src/hooks/use-metrics.tsx) component for the metrics
 You can see the metrics emitted in the browser console by inspecting the `window.dataLayer` object. This can be used to send the metrics to a third party service like Adobe Analytics.
 
 ## RUM and Error Tracking
+
 TODO: Use a service like Sentry or Datadog to track errors and other RUM metrics.
