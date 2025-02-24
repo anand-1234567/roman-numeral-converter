@@ -21,7 +21,7 @@ const romanNumerals = [
 /**
  * Converts a number to a roman numeral
  * @param input - The number to convert
- * @returns The roman numeral
+ * @returns The roman numeral representation of the input number
  */
 export function convertToRoman(input: string | number): string {
   const num = typeof input === 'string' ? parseFloat(input) : input;

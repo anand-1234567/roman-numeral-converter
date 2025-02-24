@@ -1,6 +1,6 @@
 # Roman Numeral Converter API service
 
-A next.js application that provides a RESTful API that converts numbers into roman numerals. See [spec.yml](./spec.yml) for the API specification.
+A Next.js application that provides a RESTful API that converts numbers into roman numerals. See [spec.yml](./spec.yml) for the API specification.
 
 ## Prerequisites
 
